@@ -1,0 +1,82 @@
+﻿@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+
+<div>
+    @using (Html.BeginForm())
+    {
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group required">
+                    <label>YouTube Video URL:</label>
+                    <input class="form-control" name="url" id="url" placeholder="https://www.youtube.com/watch?v=crPl0ITIkS0" required/>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <label>Artist Name:</label>
+                    <input class="form-control" name="artist" id="artist" placeholder="Primus" />
+                </div>
+                <div class="form-group">
+                    <label>Album Name:</label>
+                    <input class="form-control" name="album" id="album" placeholder="Sailing the Seas of Cheese" />
+                </div>
+                <div class="form-group required">
+                    <label>Tracklist:</label>
+                    <textarea class="form-control tracklist" name="tracklist" id="tracklist" rows="15" placeholder="Copy and paste the tracklist here, one track per line" heigh="400"></textarea>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>&nbsp;</label>
+                    <button id="start" class="btn btn-primary col-sm-12" height="200px">Get Album!</button>
+                </div>
+                <br />
+                <div id="status">Waiting for album...</div>
+
+            </div>
+            <div class="col-sm-12">
+
+            </div>
+        </div>
+    }
+    <br />
+    <a align="right" href="javascript:void(null)" onclick="randomColor()">Random Color</a> | <a align="right" href="/Main/ChangeLog">Change Log</a>
+</div>
+
+<script>
+    
+    $('#start').click(function () {
+        if ($('#url').val() != "") {
+            if ($('#tracklist').val() != '' || $('#tracklist').val() != '') {
+                var url = $('#url').val();
+                var artist = $('#artist').val();
+                var artist = $('#album').val();
+                var tracks = $('#tracklist').val();                 
+                var data = { 'url': url, 'tracklist': tracks, 'artist': artist, 'album': album };
+                console.log(data);
+            }
+            $("#status").html($("#status").html() + '<br>Starting album download...');
+            $('#start').html("Downloading...");
+        }
+    });
+
+    function randomColor() {
+        var newColor = '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);
+        $('.form-control:focus').css('border-color', newColor);
+        $('#status').css('border-color', newColor);
+        $('.btn-primary').css('background-image', 'linear-gradient(to bottom,' + newColor + ', ' + newColor + ')');
+        $('.btn-primary').css('border-color', newColor);
+        $('#status').css('border-color', newColor);
+        $('#status').css('color', newColor);
+        $('body').css('background-color', newColor);
+        $('a').css('color', newColor);
+        $('::selection').css('background', newColor);
+        $('::-moz-selection').css('background', newColor);
+        $('.form-control:focus').css('border-color', newColor);
+        $('.form-control').css('border', '1px solid ' + newColor);
+        $('.form-control').css('color', newColor);
+        $('.form-control::-moz-placeholder').css('color', newColor);
+    }
+
+</script>
