@@ -6,35 +6,21 @@ using System.Threading.Tasks;
 
 namespace SliceAndDiceWeb
 {
-    /// <summary>
-    /// This class is used to save song info obtained from youtube as a Title and StartTime
-    /// </summary>
+
+    // Contains the metadata needed to slice the media file
     class SongInfo
     {
+        public string Title;
+        public string StartTime;    // hh:mm:ss
+        public int StartSeconds;    // total seconds
 
-        public string Title { get; set; }
-        public string StartTime { get; set; }
-
-        public SongInfo (string Title, string StartTime)
+        public SongInfo (string Title, string StartTime, int StartSeconds)
         {
             this.Title = Title;
             this.StartTime = StartTime;
+            this.StartSeconds = StartSeconds;
         }
 
-        /// <summary>
-        /// Converts StartTime to time in seconds
-        /// </summary>
-        /// <returns>The time in seconds of StartTime</returns>
-        public int StartTimeInSeconds ()
-        {
-            int seconds = 0;
-            string [] time = StartTime.Split(':');
-            for(int i=0; i<time.Length; i++)
-            {
-                int t = Int32.Parse(time[i]);
-                seconds += t * (int)Math.Pow(60, time.Length - 1 - i);
-            }
-            return seconds;
-        }
+
     }
 }

@@ -9,15 +9,9 @@ using System.Text.RegularExpressions;
 namespace SliceAndDiceWeb
 {
     class AlbumDownloader
-    {
-        
-        /**
-        *   Check that Youtube URL is ok
-        */
+    {        
 
-        /**
-        * Downloads album as video and returns file location as a string
-        */
+        // Downloads album as video and returns file location as a string
         public static string Download(string url, string filepath="./")
         {
             try {
@@ -39,7 +33,6 @@ namespace SliceAndDiceWeb
                     //TODO: No Videos found!!!!
                     return "Didn't Download!";
                 }
-
 
                 if (videoInfo.RequiresDecryption)
                 {
@@ -63,6 +56,5 @@ namespace SliceAndDiceWeb
                 return "Error: YouTube is not cooperating... Please try again later.";
             }
         }
-
     }
 }

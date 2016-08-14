@@ -12,37 +12,31 @@ namespace SliceAndDiceWeb
 {
     class AlbumUtility
     {
-        /// <summary>
-        /// Slices up an album mp3 file into individual song mp3 files and saves in new sub-directory
-        /// </summary>
-        /// <param name="filepathIn">The filepath where the album mp3 file is stored</param>
-        /// <param name="filepathOut">The directory where songs will be stored</param>
-        /// <param name="songList">Info needed to cut each song</param>
-        /// <param name="deleteAlbum">Option to delete original youtube file</param>
+        // Slices up an album mp3 file into individual song mp3 files and saves in new sub-directory
+        // TODO: audit class
         public AlbumUtility(string filepathIn, string filepathOut, List<SongInfo> songList, string artist="", string album="", bool deleteAlbum=true)
         {
             string dirName = Path.GetFileNameWithoutExtension(filepathIn);
             
             MediaFile inputFile = new MediaFile(filepathIn);
-            Console.WriteLine("Found {0}", filepathIn);
-            Console.WriteLine("Saving songs to {0}", filepathOut);
+            System.Diagnostics.Debug.WriteLine("Found {0}", filepathIn);
+            System.Diagnostics.Debug.WriteLine("Saving songs to {0}", filepathOut);
 
             using (Engine engine = new Engine())
             {
                 engine.GetMetadata(inputFile);
-                int albumLength = (int)(inputFile.Metadata.Duration.TotalSeconds);
-                Console.WriteLine("Album Length {0}", albumLength);
+                int albumLength = (Int32)(inputFile.Metadata.Duration.TotalSeconds);
+                System.Diagnostics.Debug.WriteLine("Album Length {0}", albumLength);
                 for (int i = 0; i < songList.Count; i++)
                 {
                     // Get start time and and length of song
-                    int timeStart, timeLength;
-                    timeStart = songList[i].StartTimeInSeconds();
+                    int timeLength = 0;
                     if (i + 1 < songList.Count)
                     {
-                        timeLength = songList[i + 1].StartTimeInSeconds() - timeStart;
+                        timeLength = songList[i + 1].StartSeconds - songList[i].StartSeconds;
                     }
                     else {
-                        timeLength = albumLength - timeStart;
+                        timeLength = albumLength - songList[i].StartSeconds;
                     }
 
                     // Get the output file for the song
@@ -51,9 +45,9 @@ namespace SliceAndDiceWeb
 
                     // Cut the song
                     ConversionOptions options = new ConversionOptions();
-                    options.CutMedia(TimeSpan.FromSeconds(timeStart), TimeSpan.FromSeconds(timeLength));
+                    options.CutMedia(TimeSpan.FromSeconds(songList[i].StartSeconds), TimeSpan.FromSeconds(timeLength));
                     engine.Convert(inputFile, outputFile, options);
-                    Console.WriteLine("{0}-{1} {2}", timeStart, timeStart + timeLength, songpath);
+                    System.Diagnostics.Debug.WriteLine("{0}-{1} {2}", songList[i].StartSeconds, songList[i].StartSeconds + timeLength, songpath);
 
                     // Write the song metadata
                     TagLib.File song = TagLib.File.Create(songpath);
@@ -73,38 +67,11 @@ namespace SliceAndDiceWeb
 
             if(deleteAlbum)
             {
-                Console.WriteLine("Deleting temporary album file {0}", filepathIn);
+                System.Diagnostics.Debug.WriteLine("Deleting temporary album file {0}", filepathIn);
                 File.Delete(filepathIn);
             }
         }
 
-        //static void Main(string[] args)
-        //{
-        //    Console.Write("Enter YouTube URL: ");
-        //    string url = Console.ReadLine();
-        //    Console.Write("Downloading Album... ");
-        //    string filepath = AlbumDownloader.Download(url);
-        //    Console.WriteLine("Finished.");
-        //    Console.WriteLine();
 
-        //    Console.Write("Enter the C://path/to/tracklist/file.txt: ");
-        //    string songListLoc = Console.ReadLine();
-        //    Console.Write("Getting Track Info... ");
-        //    List<SongInfo> songList = SongInfoUtility.FromFile(songListLoc);
-        //    Console.Write("Finished.");
-        //    Console.WriteLine();
-
-        //    Console.Write("What\'s the name of the artist?: ");
-        //    string artist = Console.ReadLine();
-        //    Console.Write("What\'s the name of the album?: ");
-        //    string album = Console.ReadLine();
-
-        //    Console.WriteLine("Awesome slicing up the album now...");
-        //    AlbumUtility albumUtility = new AlbumUtility(filepath, songListLoc, songList, artist, album);
-        //    Console.Write("All finished. The album should be saved at {0}", Path.GetDirectoryName(songListLoc));
-        //    Console.WriteLine();
-
-        //    Console.Read();
-        //}
     }
 }
