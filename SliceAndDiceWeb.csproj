@@ -163,6 +163,7 @@
     <Content Include="scripts\jquery-2.2.1.js" />
     <Content Include="scripts\jquery-2.2.1.min.js" />
     <Content Include="scripts\random.js" />
+    <Content Include="scripts\test.js" />
     <Content Include="SliceAndDiceWeb.publish.xml">
       <SubType>Designer</SubType>
     </Content>
