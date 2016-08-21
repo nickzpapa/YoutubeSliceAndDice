@@ -19,12 +19,6 @@ namespace SliceAndDiceWeb
             return View();
         }
 
-
-        public ActionResult ChangeLog()
-        {
-            return View();
-        }
-
         [HttpPost]  // Request for an sliced album
         public ActionResult Index(string url, string tracklist, string artist, string album)
         {           
