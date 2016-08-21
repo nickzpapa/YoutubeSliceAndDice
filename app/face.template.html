@@ -1,0 +1,37 @@
+﻿<form method="post" action="/">
+    <div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group required">
+                    <label>YouTube Video URL:</label>
+                    <input class="form-control" name="url" id="url" placeholder="https://www.youtube.com/watch?v=crPl0ITIkS0" required />
+                </div>
+                <hr />
+                <div class="form-group">
+                    <label>Artist Name:</label>
+                    <input class="form-control" name="artist" id="artist" placeholder="Primus" />
+                </div>
+                <div class="form-group">
+                    <label>Album Name:</label>
+                    <input class="form-control" name="album" id="album" placeholder="Sailing the Seas of Cheese" />
+                </div>
+                <div class="form-group required">
+                    <label>Tracklist:</label>
+                    <textarea class="form-control tracklist" name="tracklist" id="tracklist" rows="15" placeholder="Copy and paste the tracklist here, one track per line" heigh="400"></textarea>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>&nbsp;</label>
+                    <button id="start" class="btn btn-primary col-sm-12" height="200px">Get Album!</button>
+                </div>
+                <br />
+                <div id="status">Waiting for album...</div>
+
+            </div>
+            <div class="col-sm-12">
+
+            </div>
+        </div>
+    </div>
+</form>
