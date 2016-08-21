@@ -143,6 +143,7 @@
     <Content Include="Content\master.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\angular.jpg" />
     <Content Include="Images\falloutvaultboythumbsup.jpg" />
     <Content Include="Images\falloutvaultboythumbsup_200x150.jpg" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
