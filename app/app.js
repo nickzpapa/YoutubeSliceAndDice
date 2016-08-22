@@ -1,25 +1,33 @@
 ﻿(function () {
     'use strict';
 
-    // App Components
+    // App 
     angular.module('app')
-        .component('zFace', {
-            templateUrl: "/app/face.template.html",
+        .config(function ($routeProvider) {
+            $routeProvider
+                .when('/', {
+                    templateUrl: '/app/face.template.html'
+                })
+                .when('/changes', {
+                    templateUrl: "/app/changes.template.html"
+                });
         })
-        .component('zChanges', {
-            templateUrl: "/app/changes.template.html"
-        });
+        .controller("MainController", function ($scope, $location) {
+            //Values for form
+            $scope.form = {
+                url: '',
+                artist: '',
+                album: '',
+                tracklist: ''
+            };
 
-    // App Controller
-    angular
-    	.module('app')
-        .controller("MainController", ["$scope", function ($scope) {
-            $scope.current = 'zFace';
-            $scope.pages =  ['zFace', 'zChanges'];
+            //Page location
+            $scope.location = '';
+
+            //Change the page location
             $scope.change = function (page) {
-                console.log(page);
-            	if($scope.pages.indexOf(page) > -1)
-            		$scope.current = page;
+                $scope.location = page;
+                $location.path(page);
             }
-        }]);
+        })
 })();

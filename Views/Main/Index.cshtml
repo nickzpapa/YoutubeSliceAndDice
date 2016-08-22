@@ -8,10 +8,12 @@
     <link href="~/Content/master.css" rel="stylesheet" type="text/css" />
     <script src="~/scripts/jquery-2.2.1.js"></script>
     <script src="~/scripts/angular.min.js"></script>
+    <script src="~/scripts/angular-route.min.js"></script>
     <script src="~/app/app.module.js"></script>
     <script src="~/app/app.js"></script>
     <script src="~/scripts/random.js"></script>
     <script src="~/scripts/test.js"></script>
+
 
 </head>
 <body ng-app="app">
@@ -21,24 +23,16 @@
             <div class="page-header page-title">
                 <h2>YouTube Slice and Dice!</h2>
             </div>
-            <div ng-switch="current">
-                <div ng-switch-when="zFace"><z-face></z-face></div>
-                <div ng-switch-when="zChanges"><z-changes></z-changes></div>
-                <div ng-switch-default><z-face></z-face></div>
-            </div>
+            <div ng-view></div>
             <div class="navs">
                 <div id="color"><a align="right" href="javascript:void(null)" onclick="randomColor()">Random Color</a></div>
                 <div> | </div>
-                <div ng-switch="current">
-                    <a ng-switch-when="zChanges" ng-click="change('zFace')">Back</a>
-                    <a ng-switch-when="zFace" ng-click="change('zChanges')">Change Log</a>
-                    <a ng-switch-default="zFace" ng-click="change('zChanges')">Change Log</a>
-                </div>
-               
+                <div ng-switch="location">
+                    <a ng-switch-when="/changes" ng-click="change('/')">Back</a>
+                    <a ng-switch-default ng-click="change('/changes')">Change Log</a>
+                </div>          
             </div>
         </div>
-
-
     </div>
 </body>
 </html>

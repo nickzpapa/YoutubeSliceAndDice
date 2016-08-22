@@ -4,20 +4,20 @@
             <div class="col-sm-6">
                 <div class="form-group required">
                     <label>YouTube Video URL:</label>
-                    <input class="form-control" name="url" id="url" placeholder="https://www.youtube.com/watch?v=crPl0ITIkS0" required />
+                    <input ng-model="form.url" class="form-control" name="url" id="url" placeholder="https://www.youtube.com/watch?v=crPl0ITIkS0" required />
                 </div>
                 <hr />
                 <div class="form-group">
                     <label>Artist Name:</label>
-                    <input class="form-control" name="artist" id="artist" placeholder="Primus" />
+                    <input ng-model="form.artist"  class="form-control" name="artist" id="artist" placeholder="Primus" />
                 </div>
                 <div class="form-group">
                     <label>Album Name:</label>
-                    <input class="form-control" name="album" id="album" placeholder="Sailing the Seas of Cheese" />
+                    <input ng-model="form.album"  class="form-control" name="album" id="album" placeholder="Sailing the Seas of Cheese" />
                 </div>
                 <div class="form-group required">
                     <label>Tracklist:</label>
-                    <textarea class="form-control tracklist" name="tracklist" id="tracklist" rows="15" placeholder="Copy and paste the tracklist here, one track per line" heigh="400"></textarea>
+                    <textarea ng-model="form.tracklist" class="form-control tracklist" name="tracklist" id="tracklist" rows="15" placeholder="Copy and paste the tracklist here, one track per line" heigh="400"></textarea>
                 </div>
             </div>
             <div class="col-sm-6">
@@ -27,9 +27,6 @@
                 </div>
                 <br />
                 <div id="status">Waiting for album...</div>
-
-            </div>
-            <div class="col-sm-12">
 
             </div>
         </div>
