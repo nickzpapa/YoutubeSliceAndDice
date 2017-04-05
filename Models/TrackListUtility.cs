@@ -15,13 +15,12 @@ namespace SliceAndDiceWeb
         // Matches a time (hh:mm:SS)
         public const string TimeRegex = @"(([0-9]?[0-9]:)?([0-9]?[0-9]?):([0-9]?[0-9]))";
 
-
         // Takes a tracklist as a multiline string and retrieves song metadata list
-        // TODO: Error checking tracklist input (hints: exactly time per line, etc)
         public static List<SongInfo> FromString(string tracksList)
         {
             List<SongInfo> songList = new List<SongInfo>();
-            string[] tracks = Regex.Split(tracksList, Environment.NewLine);           
+
+            string[] tracks = tracksList.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
 
             for (int i = 0; i < tracks.Length; i++)
             {
@@ -34,7 +33,7 @@ namespace SliceAndDiceWeb
 
                 // Clean up the rest and save as Title
                 string title = Regex.Replace(line, @"[\/:*?""<>|]", "");
-                title = title.Trim(new char[] { ' ', '-', '(', ')', '{', '}' });
+                title = title.Trim(new char[] { ' ', '-', '(', ')', '{', '}', '–', '–' });
 
                 System.Diagnostics.Debug.WriteLine("{0} - {1}", startTime, title);
 
@@ -45,8 +44,7 @@ namespace SliceAndDiceWeb
         }
 
 
-        // Parses a text file for a list of SongInfo. Used for testing and such
-        // TODO: refactored, not sure if works
+        // Parses a text file for a list of SongInfo. Used for testing
         public static List<SongInfo> FromFile(string filePath)
         {
             using (StreamReader fin = new StreamReader(filePath))
@@ -69,9 +67,7 @@ namespace SliceAndDiceWeb
             }
             return seconds;
         }
-
-
-
+        
 
     }
 }

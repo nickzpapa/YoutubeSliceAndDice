@@ -5,13 +5,14 @@ using System.Net;
 using YoutubeExtractor;
 using System.Linq;
 using System.Text.RegularExpressions;
+using SliceAndDiceWeb.Models;
 
 namespace SliceAndDiceWeb
 {
     class AlbumDownloader
     {        
 
-        // Downloads album as video and returns file location as a string
+        // Downloads album as video and returns file name as a string
         public static string Download(string url, string filepath="./")
         {
             try {
@@ -30,8 +31,7 @@ namespace SliceAndDiceWeb
                 }
                 else
                 {
-                    //TODO: No Videos found!!!!
-                    return "Didn't Download!";
+                    throw new System.Exception("Could not download from YouTube");;
                 }
 
                 if (videoInfo.RequiresDecryption)
@@ -41,19 +41,20 @@ namespace SliceAndDiceWeb
 
                 // Download and convert to mp3
                 string title = Regex.Replace(videoInfo.Title, @"[\/:*?""<>|]*", "");
-                string savePath = Path.Combine(filepath, title + videoInfo.VideoExtension);
+                string fileName = title + videoInfo.VideoExtension;
+                string savePath = Path.Combine(filepath, fileName);
                 VideoDownloader videoDownloader = new VideoDownloader(videoInfo, savePath);
                 videoDownloader.Execute();
 
-                return savePath;
+                return fileName;
             }
             catch(System.ArgumentException e)
             {
-                return "Error: URL Provided does not point to YouTube";
+                throw new SliceException("URL Provided does not point to YouTube");
             }   
             catch(WebException e)
             {
-                return "Error: YouTube is not cooperating... Please try again later.";
+                throw new System.Exception("YouTube is not cooperating with this particular video. Please try another");
             }
         }
     }

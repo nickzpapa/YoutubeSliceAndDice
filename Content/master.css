@@ -26,12 +26,17 @@
 
 .container{
     background-color:#ffffff;
+    color: #cde919;
     margin-top:20px;
     border-radius:10px;
     padding-left:50px;
     padding-right:50px;
     padding-bottom:20px;
-    box-shadow: 5px 0px 15px;
+    box-shadow: 5px 0px 15px white;
+}
+
+.container div{
+    color: black;
 }
 
 
@@ -51,3 +56,37 @@
 .navs div{
     display: inline; 
 }
+
+
+/*.container  {
+
+    -webkit-animation: shadow 30s infinite alternate;
+}
+
+@-webkit-keyframes shadow {
+      0% {box-shadow: 0px 0px 200px;color: #8bc5d1;}
+     15% {color: #f8cb4a;}
+     30% {color: #95b850;}
+     45% {color: #944893;}
+     60% {color: #c71f00;}
+     75% {color: #bdb280;}
+     90% {color: #229ac8;}
+    100% {box-shadow: 0px 0px 200px;color: #8bc5d1;}
+}
+
+
+body{
+
+    -webkit-animation: hue 30s infinite linear;
+}
+
+@-webkit-keyframes hue {
+      0% {background-color: #229ac8;}
+     15% {background-color: #8bc5d1;}
+     30% {background-color: #f8cb4a;}
+     45% {background-color: #95b850;}
+     60% {background-color: #944893;}
+     75% {background-color: #c71f00;}
+     90% {background-color: #bdb280;}
+    100% {background-color: #229ac8;}
+}*/

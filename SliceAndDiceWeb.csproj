@@ -156,6 +156,8 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="scripts\angular-cookies.js" />
+    <Content Include="scripts\angular-cookies.min.js" />
     <Content Include="scripts\angular-mocks.js" />
     <Content Include="scripts\angular-route.js" />
     <Content Include="scripts\angular-route.min.js" />
@@ -180,9 +182,11 @@
     </Compile>
     <Compile Include="Models\AlbumDownloader.cs" />
     <Compile Include="Models\AlbumUtility.cs" />
+    <Compile Include="Models\SliceException.cs" />
     <Compile Include="Models\SliceService.cs" />
     <Compile Include="Models\SongInfo.cs" />
     <Compile Include="Models\TrackListUtility.cs" />
+    <Compile Include="Models\Payload.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DBug.cs" />
   </ItemGroup>
@@ -196,8 +200,9 @@
     <Content Include="scripts\jquery-2.2.1.min.map" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\SliceAndDice.pubxml" />
-    <Content Include="scripts\angular.min.js.map" />
     <Content Include="scripts\angular-route.min.js.map" />
+    <Content Include="scripts\angular.min.js.map" />
+    <Content Include="scripts\angular-cookies.min.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -207,6 +212,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Stuff\" />
     <Folder Include="tmp\" />
   </ItemGroup>
   <PropertyGroup>

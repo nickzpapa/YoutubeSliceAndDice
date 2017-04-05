@@ -8,7 +8,7 @@ namespace SliceAndDiceWeb
 {
 
     // Contains the metadata needed to slice the media file
-    class SongInfo
+    struct SongInfo
     {
         public string Title;
         public string StartTime;    // hh:mm:ss
